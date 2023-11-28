@@ -7,12 +7,12 @@ Eindhoven University of Technology
 
 ## Change Log
 
-State is one of: pending, approved, amended, deprecated.
+State is one of: Pending, Approved, Amended, Deprecated.
 
 Date is an ISO 8601 (YYYY-MM-DD) string.
 
 Status: **Pending** <br>
-Last Updated: 2023-11-27
+Last Updated: 2023-11-28
 
 ## Referenced Use Case(s)
 
@@ -43,8 +43,9 @@ Might create some other function of name prepareBeverage() with different parame
 
 ## Decision
 
-As per the design, The software is very open for any future requirements. 
-We also have the support to sell other _**types**_ of beverages such as Ice-cream and Beers. 
+- We decided to develop no user interfaces for this particular project. This project is more focused on how to design a structure of a beverage machine.
+- As per the design, The software is very open for any future requirements. 
+- We also have the support to sell other _**types**_ of beverages such as Ice-cream and Beers. 
 
 
 ## References
