@@ -34,7 +34,7 @@ Initially we were asked to implement a software for the coffee machine.
 
 Below is the class diagram of the beverage machine project.
 
-
+<img src="assets/class_diagram.png"/>
 
 ## Considerations
 
