@@ -39,7 +39,7 @@ Below is the class diagram of the beverage machine project.
 ## Considerations
 
 Didn't use any Architecture like MVC or MVP. But might introduce one of these later period. Also thinking about how to pass the user input to the factory for different types of beverage.
-Might create some other function of name [prepareBeverage()](src/main/kotlin/common/factory/Factory.kt::prepareBeverage) with different parameter (Polymorphism). Also thinking about restructuring the packages.
+Might create some other function of name [prepareBeverage()](src/main/kotlin/common/factory/Factory.kt) with different parameter (Polymorphism). Also thinking about restructuring the packages.
 
 ## Decision
 
