@@ -17,7 +17,7 @@ Last Updated: 2023-11-27
 ## Referenced Use Case(s)
 
 - [An requirement e-mail from professor Dr. Yanja Dajsuren.](https://www.google.com)
-- [UML diagram of the initial architecture.]()
+- [UML diagram of the initial architecture.](assets/class_diagram.png)
 
 Initially we were asked to implement a software for the coffee machine. 
 
@@ -28,13 +28,13 @@ Initially we were asked to implement a software for the coffee machine.
 
 ## Proposed Design
 
-- Implemented the Strategy pattern for [BeverageMaker](https://github.com/alik7-cmd/beverage_maker/blob/master/src/main/kotlin/common/maker/BeverageMaker.kt) such as create the set of objects (e.g: [CoffeeMaker](https://github.com/alik7-cmd/beverage_maker/blob/master/src/main/kotlin/coffee/CoffeeMaker.kt), [HotChocolateMaker](https://github.com/alik7-cmd/beverage_maker/blob/master/src/main/kotlin/chocolate/HotChocolateMaker.kt)) of this and makes them interchangeable inside original context object.
-- Implemented the Strategy pattern for [Decorator](https://github.com/alik7-cmd/beverage_maker/blob/master/src/main/kotlin/common/decorator/Decorator.kt) such as create the set of objects (e.g: [CoffeeDecorator](https://github.com/alik7-cmd/beverage_maker/blob/master/src/main/kotlin/coffee/CoffeeDecorator.kt)) of this and makes them interchangeable inside original context object.
-- Implemented the Factory pattern to create appropriate [BeverageMaker](https://github.com/alik7-cmd/beverage_maker/blob/master/src/main/kotlin/common/maker/BeverageMaker.kt)
+- Implemented the Strategy pattern for [BeverageMaker](src/main/kotlin/common/maker/BeverageMaker.kt) such as create the set of objects (e.g: [CoffeeMaker](src/main/kotlin/coffee/CoffeeMaker.kt), [HotChocolateMaker](src/main/kotlin/chocolate/HotChocolateMaker.kt)) of this and makes them interchangeable inside original context object.
+- Implemented the Strategy pattern for [Decorator](src/main/kotlin/common/decorator/Decorator.kt) such as create the set of objects (e.g: [CoffeeDecorator](src/main/kotlin/coffee/CoffeeDecorator.kt)) of this and makes them interchangeable inside original context object.
+- Implemented the Factory pattern to create appropriate [BeverageMaker](src/main/kotlin/common/maker/BeverageMaker.kt)
 
 Below is the class diagram of the beverage machine project.
 
-<img src="assets/class_diagram.png"/>
+<img src="assets/class_diagram.png" alt="class diagram"/>
 
 ## Considerations
 
