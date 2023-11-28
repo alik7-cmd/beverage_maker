@@ -32,6 +32,10 @@ Initially we were asked to implement a software for the coffee machine.
 - Implemented the Strategy pattern for [Decorator](https://github.com/alik7-cmd/beverage_maker/blob/master/src/main/kotlin/common/decorator/Decorator.kt) such as create the set of objects (e.g: [CoffeeDecorator](https://github.com/alik7-cmd/beverage_maker/blob/master/src/main/kotlin/coffee/CoffeeDecorator.kt)) of this and makes them interchangeable inside original context object.
 - Implemented the Factory pattern to create appropriate [BeverageMaker](https://github.com/alik7-cmd/beverage_maker/blob/master/src/main/kotlin/common/maker/BeverageMaker.kt)
 
+Below is the class diagram of the beverage machine project.
+
+![](D:\HotChocolate.png)
+
 ## Considerations
 
 Didn't use any Architecture like MVC or MVP. But might introduce one of these later period. Also thinking about how to pass the user input to the factory for different types of beverage.
