@@ -23,6 +23,8 @@ Initially we were asked to implement a software for the coffee machine.
 
 ## Context
 
+
+![skeleton_flow.png](assets%2Fskeleton_flow.png)
 - Initially I thought to use the [Builder Pattern](https://refactoring.guru/design-patterns/builder) to create the BeverageOrder. Later I discarded the idea because in Kotlin it doesn't come with a lot of benefits and sometimes creates bottlenecks.
 - Used Factory pattern to create the BeverageOrder wrapped inside BaseResponse.
 
