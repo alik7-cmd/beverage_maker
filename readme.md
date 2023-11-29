@@ -23,10 +23,15 @@ Initially we were asked to implement a software for the coffee machine.
 
 ## Context
 
+At first the machine will display the list of Beverage in the console. Then user will select his/her beverage and based on the beverage type
+it will call the appropriate factory method. The Factory is responsible for creating the appropriate beverage maker. Before creating the appropriate beverage maker it'll check if the resources are available or not using a service. The Beverage Maker will
+create the final order based on selected beverage and ingredients and will pass that to factory. The factory will pass that to the machine 
+wrapped inside a [BaseResult](src/main/kotlin/common/data/BaseResult.kt). Below is the flow diagram of the basic structure.
 
-![skeleton_flow.png](assets%2Fskeleton_flow.png)
+<img src="assets/skeleton_flow.png" alt="class diagram"/>
+
 - Initially I thought to use the [Builder Pattern](https://refactoring.guru/design-patterns/builder) to create the BeverageOrder. Later I discarded the idea because in Kotlin it doesn't come with a lot of benefits and sometimes creates bottlenecks.
-- Used Factory pattern to create the BeverageOrder wrapped inside BaseResponse.
+- Used Factory pattern to create the BeverageOrder wrapped inside [BaseResult](src/main/kotlin/common/data/BaseResult.kt).
 
 ## Proposed Design
 
