@@ -5,8 +5,9 @@ import common.data.BaseResult
 import common.data.Beverage
 import common.data.BeverageOrder
 
-interface Factory {
-    val beverage : Beverage
+interface BeverageRepository {
     val resourceService : ResourceService
-    fun prepareBeverage() : BaseResult<BeverageOrder, String>
+    fun prepareBeverage(beverage: Beverage) : BaseResult<BeverageOrder, String>
+
+    fun getAllBeverage() : BaseResult<List<Beverage>, String>
 }
