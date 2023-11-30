@@ -4,12 +4,19 @@ import common.data.Beverage
 import common.data.BeverageOrder
 import common.BeverageMaker
 
-class CoffeeMaker(override val beverage: Beverage) : BeverageMaker {
+class CoffeeMaker(
+    override val beverage: Beverage,
+    espresso: Int,
+    foam: Int,
+    steamedMilk: Int,
+    hotChocolate: Int
+) : BeverageMaker {
     private val decorator = CoffeeDecorator(
-        espresso = 1,
-        foam = 1,
-        steamedMilk = 1,
-        hotChocolate = 1)
+        espresso = espresso,
+        foam = foam,
+        steamedMilk = steamedMilk,
+        hotChocolate = hotChocolate
+    )
 
     override fun prepareOrder(): BeverageOrder {
         return BeverageOrder(beverage.name, decorator.iterator(), calculatePrice())

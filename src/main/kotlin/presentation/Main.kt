@@ -1,22 +1,14 @@
 package presentation
 
-import common.ResourceServiceImpl
 import common.data.BaseResult
 import common.data.Beverage
-import common.BeverageRepositoryImpl
+import common.ServiceLocator
+import common.data.BeverageType
 import java.util.*
 
 fun main() {
-    /*val viewModel = BeverageViewModel(BeverageRepositoryImpl(ResourceServiceImpl()))
-    viewModel.getAllBeverage()
-    val state = viewModel.observer.subject.state
-    observe(state)
-    viewModel.prepareBeverageOrderBy(beverage)
-    observe(state)*/
     val input = Scanner(System.`in`)
-
-
-    val repository = BeverageRepositoryImpl(ResourceServiceImpl())
+    val repository = ServiceLocator.getBeverageRepository()
     var list : List<Beverage> = emptyList()
     when(val response = repository.getAllBeverage()){
         is BaseResult.Success ->{
@@ -35,9 +27,25 @@ fun main() {
     if(index <= list.size){
         println()
         val beverage = list[index-1]
-        when(val orderState = repository.prepareBeverage(beverage)){
+        val orderState = when(beverage.type){
+            BeverageType.COFFEE ->{
+                println("Please add your options on your ${beverage.name}")
+                println("Select Espresso shot (1-5):\n" +
+                        "Select Foam (1-5):\n" +
+                        "Select Steamed Milk shot (1-5):\n" +
+                        "Select Hot chocolate (1-5):\n")
+                val espresso = input.nextInt()
+                val foam = input.nextInt()
+                val milk = input.nextInt()
+                val chocolate = input.nextInt()
+                repository.prepareBeverage(beverage, espresso, foam, milk, chocolate)
+            }
+            else -> {
+                repository.prepareBeverage(beverage)
+            }
+        }
+        when(orderState){
             is BaseResult.Success ->{
-
                 println("Please collect your ${orderState.order.name}")
                 while (orderState.order.decorator.hasNext()){
                     val decoratorItem = orderState.order.decorator.next()

@@ -16,15 +16,20 @@ class BeverageRepositoryImpl(
     override val resourceService: ResourceService
 
 ) : BeverageRepository {
-    override fun prepareBeverage(beverage: Beverage) : BaseResult<BeverageOrder, String> {
-        return if(resourceService.isResourceAvailable()){
-            val maker = when(beverage.item){
-                BeverageType.COFFEE ->  CoffeeMaker(beverage)
+    override fun prepareBeverage(
+        beverage: Beverage, espresso: Int,
+        foam: Int,
+        steamedMilk: Int,
+        hotChocolate: Int
+    ): BaseResult<BeverageOrder, String> {
+        return if (resourceService.isResourceAvailable()) {
+            val maker = when (beverage.type) {
+                BeverageType.COFFEE -> CoffeeMaker(beverage, espresso, foam, steamedMilk, hotChocolate)
                 BeverageType.WATER -> HotWaterMaker(beverage)
                 BeverageType.CHOCOLATE -> HotChocolateMaker(beverage)
             }
             BaseResult.Success(maker.prepareOrder())
-        }else{
+        } else {
             BaseResult.Error("Something went wrong! Please try again")
         }
     }
