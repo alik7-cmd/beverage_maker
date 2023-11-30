@@ -1,6 +1,6 @@
 package water
 
-import common.decorator.Decorator
+import common.data.Decorator
 
 class HotWaterDecorator() : Decorator() {
     override fun iterator(): Iterator<Pair<String, String>> {

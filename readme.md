@@ -35,9 +35,9 @@ wrapped inside a [BaseResult](src/main/kotlin/common/data/BaseResult.kt). Below 
 
 ## Proposed Design
 
-- Implemented the Strategy pattern for [BeverageMaker](src/main/kotlin/common/maker/BeverageMaker.kt) such as create the set of objects (e.g: [CoffeeMaker](src/main/kotlin/coffee/CoffeeMaker.kt), [HotChocolateMaker](src/main/kotlin/chocolate/HotChocolateMaker.kt)) of this and makes them interchangeable inside original context object.
-- Implemented the Strategy pattern for [Decorator](src/main/kotlin/common/decorator/Decorator.kt) such as create the set of objects (e.g: [CoffeeDecorator](src/main/kotlin/coffee/CoffeeDecorator.kt)) of this and makes them interchangeable inside original context object.
-- Implemented the Factory pattern to create appropriate [BeverageMaker](src/main/kotlin/common/maker/BeverageMaker.kt)
+- Implemented the Strategy pattern for [BeverageMaker](src/main/kotlin/common/BeverageMaker.kt) such as create the set of objects (e.g: [CoffeeMaker](src/main/kotlin/coffee/CoffeeMaker.kt), [HotChocolateMaker](src/main/kotlin/chocolate/HotChocolateMaker.kt)) of this and makes them interchangeable inside original context object.
+- Implemented the Strategy pattern for [Decorator](src/main/kotlin/common/data/Decorator.kt) such as create the set of objects (e.g: [CoffeeDecorator](src/main/kotlin/coffee/CoffeeDecorator.kt)) of this and makes them interchangeable inside original context object.
+- Implemented the Factory pattern to create appropriate [BeverageMaker](src/main/kotlin/common/BeverageMaker.kt)
 
 Below is the class diagram of the beverage machine project.
 
@@ -46,7 +46,7 @@ Below is the class diagram of the beverage machine project.
 ## Considerations
 
 Didn't use any Architecture like MVC or MVP. But might introduce one of these later period. Also thinking about how to pass the user input to the factory for different types of beverage.
-Might create some other function of name [prepareBeverage()](src/main/kotlin/domain/BeverageRepository.kt) with different parameter (Polymorphism). Also thinking about restructuring the packages.
+Might create some other function of name [prepareBeverage()](src/main/kotlin/common/BeverageRepository.kt) with different parameter (Polymorphism). Also thinking about restructuring the packages.
 
 ## Decision
 

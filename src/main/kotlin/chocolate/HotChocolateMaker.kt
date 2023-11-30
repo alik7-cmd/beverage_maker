@@ -2,7 +2,7 @@ package chocolate
 
 import common.data.Beverage
 import common.data.BeverageOrder
-import common.maker.BeverageMaker
+import common.BeverageMaker
 
 class HotChocolateMaker(override val beverage: Beverage) : BeverageMaker {
     private val decorator = HotChocolateDecorator()

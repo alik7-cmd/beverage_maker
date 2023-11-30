@@ -1,16 +1,14 @@
-package common.factory
+package common
 
 import chocolate.HotChocolate
 import chocolate.HotChocolateMaker
 import coffee.CoffeeMaker
 import coffee.cappuccino.Cappuccino
 import coffee.mocha.Mocha
-import domain.ResourceService
 import common.data.BaseResult
 import common.data.Beverage
 import common.data.BeverageOrder
 import common.data.BeverageType
-import domain.BeverageRepository
 import water.HotWater
 import water.HotWaterMaker
 

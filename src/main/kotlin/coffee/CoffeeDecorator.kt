@@ -1,6 +1,6 @@
 package coffee
 
-import common.decorator.Decorator
+import common.data.Decorator
 
 class CoffeeDecorator(
     val espresso: Int,
