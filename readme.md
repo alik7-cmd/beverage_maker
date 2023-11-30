@@ -28,7 +28,7 @@ it will call the appropriate factory method. The Factory is responsible for crea
 create the final order based on selected beverage and ingredients and will pass that to factory. The factory will pass that to the machine 
 wrapped inside a [BaseResult](src/main/kotlin/common/data/BaseResult.kt). Below is the flow diagram of the basic structure.
 
-<img src="assets/skeleton_flow.png" alt="class diagram"/>
+<img src="assets/flow_diagram.png" alt="class diagram"/>
 
 - Initially I thought to use the [Builder Pattern](https://refactoring.guru/design-patterns/builder) to create the BeverageOrder. Later I discarded the idea because in Kotlin it doesn't come with a lot of benefits and sometimes creates bottlenecks.
 - Used Factory pattern to create the BeverageOrder wrapped inside [BaseResult](src/main/kotlin/common/data/BaseResult.kt).
@@ -46,7 +46,7 @@ Below is the class diagram of the beverage machine project.
 ## Considerations
 
 Didn't use any Architecture like MVC or MVP. But might introduce one of these later period. Also thinking about how to pass the user input to the factory for different types of beverage.
-Might create some other function of name [prepareBeverage()](src/main/kotlin/common/factory/BeverageRepository.kt) with different parameter (Polymorphism). Also thinking about restructuring the packages.
+Might create some other function of name [prepareBeverage()](src/main/kotlin/domain/BeverageRepository.kt) with different parameter (Polymorphism). Also thinking about restructuring the packages.
 
 ## Decision
 

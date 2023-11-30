@@ -1,6 +1,6 @@
-package common.factory
+package domain
 
-import common.ResourceService
+import domain.ResourceService
 import common.data.BaseResult
 import common.data.Beverage
 import common.data.BeverageOrder

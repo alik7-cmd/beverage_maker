@@ -3,7 +3,7 @@ package presentation
 import common.data.BaseResult
 import common.data.Beverage
 import common.data.BeverageOrder
-import common.factory.BeverageRepository
+import domain.BeverageRepository
 import observer.MachineStateObserver
 import observer.Subject
 
