@@ -76,7 +76,7 @@ private fun observe(viewModel: BeverageViewModel){
         is BeverageMachineUiState.BeverageOrderCreateSuccess ->{
             println("You have selected ${state.order.beverage.name}")
             println(state.order.decorator.toString())
-            println("Price is "+ String.format("%.2f", state.order.price))
+            println("Price -> "+ String.format("%.2f", state.order.price))
         }
 
         is BeverageMachineUiState.Error ->{
@@ -88,7 +88,7 @@ private fun observe(viewModel: BeverageViewModel){
             exitProcess(0)
         }
         BeverageMachineUiState.PaymentSuccess -> {
-            viewModel.prepareBeverageBy(beverage, espresso, foam, milk, chocolate)
+            viewModel.prepareBeverage(beverage, espresso, foam, milk, chocolate)
         }
     }
 }

@@ -14,7 +14,7 @@ data class CoffeeDecorator(
                 "Espresso -> $espresso\n" +
                 "Foam -> $foam\n" +
                 "Steamed Milk -> $steamedMilk\n" +
-                "Hot Chocolate -> $hotChocolate\n"
+                "Hot Chocolate -> $hotChocolate"
 
     }
 }

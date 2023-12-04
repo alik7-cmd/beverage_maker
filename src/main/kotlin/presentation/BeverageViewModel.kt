@@ -28,7 +28,7 @@ class BeverageViewModel(private val repository: BeverageRepository,
         }
     }
 
-    fun prepareBeverageBy(
+    fun prepareBeverage(
         beverage: Beverage,
         espresso: Int = 0,
         foam: Int = 0,
