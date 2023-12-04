@@ -1,63 +1,38 @@
 package presentation
 
-import common.data.BaseResult
 import common.data.Beverage
 import common.ServiceLocator
-import common.data.BeverageType
-import java.util.*
 
+private lateinit var beverage: Beverage
 fun main() {
-    val input = Scanner(System.`in`)
-    val repository = ServiceLocator.getBeverageRepository()
-    var list : List<Beverage> = emptyList()
-    when(val response = repository.getAllBeverage()){
-        is BaseResult.Success ->{
-            list = response.order
-            list.forEachIndexed { index, beverage ->
-                println(" ${index+1} The name of the beverage is ${beverage.name} and price is ${beverage.price}")
+    val viewModel = BeverageViewModel(ServiceLocator.getBeverageRepository())
+    viewModel.getAllBeverage()
+    observe(viewModel.observer.subject.state)
+    viewModel.prepareBeverageOrderBy(beverage)
+    observe(viewModel.observer.subject.state)
+}
 
+private fun observe(state: BeverageMachineUiState){
+    when(state){
+        is BeverageMachineUiState.BeverageListSuccess -> {
+            state.listOrBeverage.forEach {
+                println("The name of the beverage is ${it.name} and price is ${it.price}")
+            }
+            println()
+            beverage = state.listOrBeverage[1]
+        }
+
+        is BeverageMachineUiState.BeverageOrderSuccess ->{
+            println("Please collect your ${state.order.name}")
+            while (state.order.decorator.hasNext()){
+                val decoratorItem = state.order.decorator.next()
+                println("${decoratorItem.first} --> ${decoratorItem.second}" )
             }
         }
-        is BaseResult.Error ->{
-            println(response.msg)
+
+        is BeverageMachineUiState.Error ->{
+            println(state.msg)
         }
+        BeverageMachineUiState.Loading -> {}
     }
-
-    val index = input.nextInt()
-    if(index <= list.size){
-        println()
-        val beverage = list[index-1]
-        val orderState = when(beverage.type){
-            BeverageType.COFFEE ->{
-                println("Please add your options on your ${beverage.name}")
-                println("Select Espresso shot (1-5):\n" +
-                        "Select Foam (1-5):\n" +
-                        "Select Steamed Milk shot (1-5):\n" +
-                        "Select Hot chocolate (1-5):\n")
-                val espresso = input.nextInt()
-                val foam = input.nextInt()
-                val milk = input.nextInt()
-                val chocolate = input.nextInt()
-                repository.prepareBeverage(beverage, espresso, foam, milk, chocolate)
-            }
-            else -> {
-                repository.prepareBeverage(beverage)
-            }
-        }
-        when(orderState){
-            is BaseResult.Success ->{
-                println("Please collect your ${orderState.order.name}")
-                while (orderState.order.decorator.hasNext()){
-                    val decoratorItem = orderState.order.decorator.next()
-                    println("${decoratorItem.first} --> ${decoratorItem.second}" )
-                }
-            }
-            is BaseResult.Error ->{
-                println(orderState.msg)
-            }
-        }
-    }else{
-        println("Select a valid index")
-    }
-
 }
