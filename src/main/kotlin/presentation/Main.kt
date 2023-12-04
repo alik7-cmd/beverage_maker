@@ -40,7 +40,7 @@ fun main() {
                     chocolate = input.nextInt()
                 }
 
-                CoffeeType.CAPPUCCINO ->{
+                CoffeeType.CAPPUCCINO, CoffeeType.LATTE ->{
                     print("Select Foam(1-5): ")
                     foam = input.nextInt()
                 }
@@ -64,7 +64,8 @@ private fun observe(viewModel: BeverageViewModel){
             val emoji = "\uD83C\uDF5C"
             println("-------------------")
             state.listOrBeverage.forEachIndexed { index, beverage ->
-                println(" ${index+1} \n Name: ${beverage.name} \nPrice: ${beverage.price} $emoji")
+                println(index+1)
+                println("Name: ${beverage.name} \nPrice: ${beverage.price} $emoji")
                 println("-------------------")
             }
             println()

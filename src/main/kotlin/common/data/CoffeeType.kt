@@ -1,5 +1,5 @@
 package common.data
 
 enum class CoffeeType {
-    MOCHA, CAPPUCCINO, NONE
+    MOCHA, CAPPUCCINO, LATTE, NONE
 }
