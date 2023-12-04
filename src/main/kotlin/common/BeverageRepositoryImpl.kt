@@ -40,6 +40,11 @@ class BeverageRepositoryImpl(
             add(Cappuccino())
             add(HotWater())
             add(HotChocolate())
+
+            add(Mocha())
+            /*add(Cappuccino())
+            add(HotWater())
+            add(HotChocolate())*/
         }
         return BaseResult.Success(listOfBeverage)
     }
