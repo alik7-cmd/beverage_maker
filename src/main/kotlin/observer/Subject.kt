@@ -7,7 +7,7 @@ class Subject<T>(var state: T) {
         observers.add(observer)
     }
 
-    private fun notifyAllObservers() {
+    fun notifyAllObservers() {
         for (observer in observers) {
             observer.update()
         }

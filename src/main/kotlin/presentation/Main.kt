@@ -1,11 +1,14 @@
 package presentation
 
-import common.ServiceLocator
+import javax.swing.SwingUtilities
+
+
 
 
 fun main() {
-    val machineHomeScreen = MachineHomeScreen(ServiceLocator.getBeverageRepository())
-    machineHomeScreen.setNimbus()
-    machineHomeScreen.createFrame()
+
+    SwingUtilities.invokeLater { val machineHomeScreen = MachineHomeScreen()
+        machineHomeScreen.setNimbus() }
+
 
 }
