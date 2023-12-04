@@ -10,10 +10,12 @@ class CoffeeDecorator(
 ) : Decorator() {
     override operator fun iterator(): Iterator<Pair<String, String>> {
         return listOf(
-            "espresso" to "$espresso",
-            "foam" to "$foam",
-            "steamedMilk" to "$steamedMilk",
-            "hotChocolate" to "$hotChocolate"
+            "Size" to "$size",
+            "Temperature" to "$temperature",
+            "Espresso" to "$espresso",
+            "Foam" to "$foam",
+            "Milk" to "$steamedMilk",
+            "Chocolate" to "$hotChocolate"
         ).listIterator()
     }
 }
