@@ -9,7 +9,7 @@ import observer.Subject
 
 class BeverageViewModel(private val factory: BeverageRepository) {
 
-    val subject = Subject<BeverageMachineUiState>(BeverageMachineUiState.Loading)
+    private val subject = Subject<BeverageMachineUiState>(BeverageMachineUiState.Loading)
     val observer : MachineStateObserver<BeverageMachineUiState> = MachineStateObserver(subject)
 
     fun getAllBeverage() {
@@ -24,7 +24,6 @@ class BeverageViewModel(private val factory: BeverageRepository) {
             is BaseResult.Success -> subject.state = BeverageMachineUiState.BeverageOrderSuccess(order.order)
             is BaseResult.Error -> subject.state = BeverageMachineUiState.Error(order.msg)
         }
-
     }
 
 }
