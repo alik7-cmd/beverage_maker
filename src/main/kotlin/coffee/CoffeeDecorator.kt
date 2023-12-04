@@ -2,20 +2,19 @@ package coffee
 
 import common.data.Decorator
 
-class CoffeeDecorator(
+data class CoffeeDecorator(
     val espresso: Int,
     val foam: Int,
     val steamedMilk: Int,
     val hotChocolate: Int
 ) : Decorator() {
-    override operator fun iterator(): Iterator<Pair<String, String>> {
-        return listOf(
-            "Size" to "$size",
-            "Temperature" to "$temperature",
-            "Espresso" to "$espresso",
-            "Foam" to "$foam",
-            "Milk" to "$steamedMilk",
-            "Chocolate" to "$hotChocolate"
-        ).listIterator()
+    override fun toString(): String {
+        return  "Size -> $size\n" +
+                "Temperature -> $temperature\n" +
+                "Espresso -> $espresso\n" +
+                "Foam -> $foam\n" +
+                "Steamed Milk -> $steamedMilk\n" +
+                "Hot Chocolate -> $hotChocolate\n"
+
     }
 }

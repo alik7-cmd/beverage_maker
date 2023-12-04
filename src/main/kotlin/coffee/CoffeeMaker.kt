@@ -19,7 +19,7 @@ class CoffeeMaker(
     )
 
     override fun prepareOrder(): BeverageOrder {
-        return BeverageOrder(beverage.name, decorator.iterator(), calculatePrice())
+        return BeverageOrder(beverage, decorator, calculatePrice())
     }
 
     private fun calculatePrice() = beverage.price +

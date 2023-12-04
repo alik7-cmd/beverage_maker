@@ -14,8 +14,8 @@ class BeverageViewModel(private val repository: BeverageRepository,
     private val subject = Subject<BeverageMachineUiState>(BeverageMachineUiState.Init)
     val observer: MachineStateObserver<BeverageMachineUiState> = MachineStateObserver(subject)
 
-    fun makePayment(cardId : String, password : String){
-        when(paymentRepository.makePayment(cardId, password)){
+    fun makePayment(paymentPin : String, amount : Double){
+        when(paymentRepository.makePayment(paymentPin, amount)){
             is BaseResult.Success -> subject.state = BeverageMachineUiState.PaymentSuccess
             is BaseResult.Error -> subject.state = BeverageMachineUiState.PaymentFailed
         }
@@ -36,9 +36,13 @@ class BeverageViewModel(private val repository: BeverageRepository,
         hotChocolate: Int = 0
     ) {
         when (val order = repository.prepareBeverage(beverage, espresso, foam, steamedMilk, hotChocolate)) {
-            is BaseResult.Success -> subject.state = BeverageMachineUiState.BeverageOrderSuccess(order.order)
+            is BaseResult.Success -> subject.state = BeverageMachineUiState.BeverageOrderCreateSuccess(order.order)
             is BaseResult.Error -> subject.state = BeverageMachineUiState.Error(order.msg)
         }
+    }
+
+    fun sendResponseToMachine(){
+
     }
 
 }
@@ -47,7 +51,7 @@ sealed class BeverageMachineUiState {
     data object Init : BeverageMachineUiState()
     data object PaymentSuccess : BeverageMachineUiState()
     data object PaymentFailed : BeverageMachineUiState()
-    data class BeverageOrderSuccess(val order: BeverageOrder) : BeverageMachineUiState()
+    data class BeverageOrderCreateSuccess(val order: BeverageOrder) : BeverageMachineUiState()
     data class BeverageListSuccess(val listOrBeverage: List<Beverage>) : BeverageMachineUiState()
     data class Error(val msg: String) : BeverageMachineUiState()
 }

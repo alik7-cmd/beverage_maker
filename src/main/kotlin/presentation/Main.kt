@@ -9,17 +9,15 @@ import kotlin.system.exitProcess
 
 private lateinit var beverage: Beverage
 val input = Scanner(System.`in`)
+var milk = 0
+var chocolate = 0
+var foam = 0
+var espresso = 0
 fun main() {
 
     val viewModel = BeverageViewModel(ServiceLocator.getBeverageRepository(),
         ServiceLocator.getPaymentService())
-    print("Enter card number: ")
-    val cardId = input.nextLine()
-
-    print("Enter password: ")
-    val password = input.nextLine()
-    viewModel.makePayment(cardId, password)
-    observe(viewModel)
+    viewModel.getAllBeverage()
     observe(viewModel)
 
     when(beverage.type){
@@ -27,12 +25,12 @@ fun main() {
             println("Please select your options on your ${beverage.name}")
 
             print("Select Espresso shot(1-5): ")
-            val espresso = input.nextInt()
+            espresso = input.nextInt()
 
             print("Select Milk(1-5): ")
-            val milk = input.nextInt()
-            var chocolate = 0
-            var foam = 0
+            milk = input.nextInt()
+            chocolate = 0
+            foam = 0
 
             when(beverage.coffeeType){
                 CoffeeType.MOCHA ->{
@@ -47,14 +45,15 @@ fun main() {
 
                 else -> {}
             }
-
-            viewModel.prepareBeverageBy(beverage, espresso, foam, milk, chocolate)
         }
-        else -> {
-            viewModel.prepareBeverageBy(beverage)
-        }
+        else -> {}
     }
+
+    println("Enter payment pin: ")
+    val paymentPin = input.nextInt().toString()
+    viewModel.makePayment(paymentPin, beverage.price)
     println()
+    observe(viewModel)
     observe(viewModel)
 }
 
@@ -74,12 +73,10 @@ private fun observe(viewModel: BeverageViewModel){
             beverage = state.listOrBeverage[index-1]
         }
 
-        is BeverageMachineUiState.BeverageOrderSuccess ->{
-            println("Please collect your ${state.order.name}")
-            while (state.order.decorator.hasNext()){
-                val decoratorItem = state.order.decorator.next()
-                println("${decoratorItem.first} --> ${decoratorItem.second}" )
-            }
+        is BeverageMachineUiState.BeverageOrderCreateSuccess ->{
+            println("You have selected ${state.order.beverage.name}")
+            println(state.order.decorator.toString())
+            println("Price is "+ String.format("%.2f", state.order.price))
         }
 
         is BeverageMachineUiState.Error ->{
@@ -90,6 +87,8 @@ private fun observe(viewModel: BeverageViewModel){
             println("Payment failed")
             exitProcess(0)
         }
-        BeverageMachineUiState.PaymentSuccess -> {viewModel?.getAllBeverage()}
+        BeverageMachineUiState.PaymentSuccess -> {
+            viewModel.prepareBeverageBy(beverage, espresso, foam, milk, chocolate)
+        }
     }
 }

@@ -2,11 +2,7 @@ package water
 
 import common.data.Decorator
 
-class HotWaterDecorator() : Decorator() {
-    override fun iterator(): Iterator<Pair<String, String>> {
-        return listOf(
-            "Size" to "$size",
-            "Temperature" to "$temperature"
-        ).listIterator()
-    }
+class HotWaterDecorator : Decorator() {
+    override fun toString() = "Size -> $size\n" +
+            "Temperature -> $temperature\n"
 }
