@@ -1,6 +1,6 @@
 package common
 
-import common.data.BaseResult
+import BaseResult
 import common.data.Beverage
 import common.data.BeverageOrder
 

@@ -1,4 +1,3 @@
-import common.data.BaseResult
 
 class PaymentRepositoryImpl : PaymentRepository {
     override fun makePayment(paymentPin: String, amount: Double): BaseResult<String, String> {
@@ -10,6 +9,6 @@ class PaymentRepositoryImpl : PaymentRepository {
     }
 
     private fun isValidCredentials(paymentPin: String, amount: Double) : Boolean{
-        return true
+        return paymentPin == "1234"
     }
 }

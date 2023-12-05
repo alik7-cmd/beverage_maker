@@ -1,6 +1,5 @@
-package common
-
-import PaymentRepositoryImpl
+import common.BeverageRepositoryImpl
+import common.ResourceServiceImpl
 
 object ServiceLocator {
 

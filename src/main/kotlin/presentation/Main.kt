@@ -1,7 +1,7 @@
 package presentation
 
 import common.data.Beverage
-import common.ServiceLocator
+import ServiceLocator
 import common.data.BeverageType
 import common.data.CoffeeType
 import java.util.*
@@ -15,7 +15,8 @@ var foam = 0
 var espresso = 0
 fun main() {
 
-    val viewModel = BeverageViewModel(ServiceLocator.getBeverageRepository(),
+    val viewModel = BeverageViewModel(
+        ServiceLocator.getBeverageRepository(),
         ServiceLocator.getPaymentService())
     viewModel.getAllBeverage()
     observe(viewModel)
