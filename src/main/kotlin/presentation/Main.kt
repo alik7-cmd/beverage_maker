@@ -1,13 +1,12 @@
 package presentation
 
-import common.data.Beverage
 import ServiceLocator
 import common.data.BeverageType
 import common.data.CoffeeType
 import java.util.*
 import kotlin.system.exitProcess
 
-private lateinit var beverage: Beverage
+
 val input = Scanner(System.`in`)
 var milk = 0
 var chocolate = 0
@@ -21,9 +20,9 @@ fun main() {
     viewModel.getAllBeverage()
     observe(viewModel)
 
-    when(beverage.type){
+    when(viewModel.beverage.type){
         BeverageType.COFFEE ->{
-            println("Please select your options on your ${beverage.name}")
+            println("Please select your options on your ${viewModel.beverage.name}")
 
             print("Select Espresso shot(1-5): ")
             espresso = input.nextInt()
@@ -33,7 +32,7 @@ fun main() {
             chocolate = 0
             foam = 0
 
-            when(beverage.coffeeType){
+            when(viewModel.beverage.coffeeType){
                 CoffeeType.MOCHA ->{
                     print("Select Chocolate(1-5): ")
                     chocolate = input.nextInt()
@@ -50,9 +49,10 @@ fun main() {
         else -> {}
     }
 
-    println("Enter payment pin: ")
+    /*println("Enter payment pin: ")
     val paymentPin = input.nextInt().toString()
-    viewModel.makePayment(paymentPin, beverage.price)
+    viewModel.makePayment(paymentPin, beverage.price)*/
+    viewModel.prepareBeverage(viewModel.beverage, espresso, foam, milk, chocolate)
     println()
     observe(viewModel)
     observe(viewModel)
@@ -71,13 +71,14 @@ private fun observe(viewModel: BeverageViewModel){
             println()
             print("Please select your beverage: ")
             val index = input.nextInt()
-            beverage = state.listOrBeverage[index-1]
+            viewModel.beverage = state.listOrBeverage[index-1]
         }
 
         is BeverageMachineUiState.BeverageOrderCreateSuccess ->{
-            println("You have selected ${state.order.beverage.name}")
-            println(state.order.decorator.toString())
-            println("Price -> "+ String.format("%.2f", state.order.price))
+            viewModel.order = state.order
+            println("Enter payment pin: ")
+            val paymentPin = input.nextInt().toString()
+            viewModel.makePayment(paymentPin, viewModel.order.price)
         }
 
         is BeverageMachineUiState.Error ->{
@@ -89,7 +90,12 @@ private fun observe(viewModel: BeverageViewModel){
             exitProcess(0)
         }
         BeverageMachineUiState.PaymentSuccess -> {
-            viewModel.prepareBeverage(beverage, espresso, foam, milk, chocolate)
+            viewModel.sendFinalOrderToMachine()
+            println("You have selected ${viewModel.order.beverage.name}")
+            println(viewModel.order.decorator.toString())
+            println("Price -> "+ String.format("%.2f", viewModel.order.price))
         }
+
+        BeverageMachineUiState.BeverageOrderSendSuccess -> println("Enjoy your drink!!")
     }
 }

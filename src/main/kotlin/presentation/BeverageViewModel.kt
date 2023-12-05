@@ -10,6 +10,9 @@ import observer.Subject
 class BeverageViewModel(private val repository: BeverageRepository,
     private val paymentRepository: PaymentRepository) {
 
+    lateinit var beverage: Beverage
+    lateinit var order : BeverageOrder
+
     private val subject = Subject<BeverageMachineUiState>(BeverageMachineUiState.Init)
     val observer: MachineStateObserver<BeverageMachineUiState> = MachineStateObserver(subject)
 
@@ -40,8 +43,8 @@ class BeverageViewModel(private val repository: BeverageRepository,
         }
     }
 
-    fun sendResponseToMachine(){
-
+    fun sendFinalOrderToMachine(){
+        subject.state = BeverageMachineUiState.BeverageOrderSendSuccess
     }
 
 }
@@ -52,5 +55,6 @@ sealed class BeverageMachineUiState {
     data object PaymentFailed : BeverageMachineUiState()
     data class BeverageOrderCreateSuccess(val order: BeverageOrder) : BeverageMachineUiState()
     data class BeverageListSuccess(val listOrBeverage: List<Beverage>) : BeverageMachineUiState()
+    data object BeverageOrderSendSuccess : BeverageMachineUiState()
     data class Error(val msg: String) : BeverageMachineUiState()
 }
