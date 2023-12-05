@@ -11,6 +11,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="KotlinJavaRuntime" level="project" />
-    <orderEntry type="module" module-name="beverage_deligator" exported="" />
+    <orderEntry type="module" module-name="beverage_core" exported="" />
+        <orderEntry type="module" module-name="payment" exported="" />
   </component>
 </module>
