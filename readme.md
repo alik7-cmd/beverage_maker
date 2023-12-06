@@ -41,9 +41,10 @@ The factory will pass that to the machine wrapped inside a [BaseResult](beverage
 
 ## Proposed Design
 
-- The Product will directly use 2 modules. 
+- The Product will directly use 3 modules. 
 - A module named **beverage_core** for getting and producing beverage based on user selection.
 - A module named **payment** for payment.
+- A module named **broadcast** for broadcasting any ongoing news or advertisement.
 - The application module will use the **beverage_core** and **payment** module.
 
 **These Modules should be independent and should not depend on each other.**
@@ -70,6 +71,9 @@ Below is the class diagram of beverage_module
 
   ### Payment Module
 - Functionality of payment will be exposed by [PaymentRepository](payment/src/PaymentRepository.kt).
+
+### Broadcasting Module
+- Functionality of payment will be exposed by [BroadcastRepository](broadcast/src/BroadcastRepository.kt).
 
 ## Considerations
 

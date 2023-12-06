@@ -13,5 +13,6 @@
     <orderEntry type="library" exported="" name="KotlinJavaRuntime" level="project" />
     <orderEntry type="module" module-name="beverage_core" exported="" />
         <orderEntry type="module" module-name="payment" exported="" />
+        <orderEntry type="module" module-name="broadcast" exported="" />
   </component>
 </module>

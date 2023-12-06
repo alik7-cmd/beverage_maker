@@ -13,20 +13,19 @@ var chocolate = 0
 var foam = 0
 var espresso = 0
 fun main() {
-
-    println("Showing whats advertisement...")
-    println()
     val viewModel = BeverageViewModel(
         ServiceLocator.getBeverageRepository(),
-        ServiceLocator.getPaymentService())
+        ServiceLocator.getPaymentService(),
+        ServiceLocator.getBroadcastRepository())
+    observe(viewModel)
+    viewModel.getAllBeverage()
     observe(viewModel)
     populateUiByBeverageType(viewModel)
     viewModel.prepareBeverage(viewModel.beverage, espresso, foam, milk, chocolate)
     println()
     observe(viewModel)
     observe(viewModel)
-    println()
-    println("Showing latest advertisement...")
+    observe(viewModel)
 }
 
 private fun observe(viewModel: BeverageViewModel){
@@ -69,9 +68,13 @@ private fun observe(viewModel: BeverageViewModel){
             println("      `----'")
             println()
             println("Please Enjoy and have a great day!")
-
+            viewModel.getBroadcastingContent()
         }
         is BeverageMachineUiState.BeverageOrderSendSuccess -> println("Enjoy your drink!!")
+        is BeverageMachineUiState.BroadcastContentSuccess -> {
+            viewModel.broadcastingContent = state.broadcastContent
+            println(viewModel.broadcastingContent)
+        }
     }
 }
 

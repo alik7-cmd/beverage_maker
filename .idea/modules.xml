@@ -4,8 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/beverage_common/beverage_common.iml" filepath="$PROJECT_DIR$/beverage_common/beverage_common.iml" />
       <module fileurl="file://$PROJECT_DIR$/beverage_core/beverage_core.iml" filepath="$PROJECT_DIR$/beverage_core/beverage_core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/beverage_deligator/beverage_deligator.iml" filepath="$PROJECT_DIR$/beverage_deligator/beverage_deligator.iml" />
       <module fileurl="file://$PROJECT_DIR$/beverage_maker.iml" filepath="$PROJECT_DIR$/beverage_maker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/broadcast/broadcast.iml" filepath="$PROJECT_DIR$/broadcast/broadcast.iml" />
       <module fileurl="file://$PROJECT_DIR$/payment/payment.iml" filepath="$PROJECT_DIR$/payment/payment.iml" />
     </modules>
   </component>

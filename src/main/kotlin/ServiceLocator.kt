@@ -4,6 +4,6 @@ import common.ResourceServiceImpl
 object ServiceLocator {
 
     fun getBeverageRepository() = BeverageRepositoryImpl(ResourceServiceImpl())
-
     fun getPaymentService() = PaymentRepositoryImpl()
+    fun getBroadcastRepository() = BroadcastRepositoryImpl()
 }
