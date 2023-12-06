@@ -14,42 +14,19 @@ var foam = 0
 var espresso = 0
 fun main() {
 
+    println("Showing whats advertisement...")
+    println()
     val viewModel = BeverageViewModel(
         ServiceLocator.getBeverageRepository(),
         ServiceLocator.getPaymentService())
     observe(viewModel)
-    when(viewModel.beverage.type){
-        BeverageType.COFFEE ->{
-            println("Please select your options on your ${viewModel.beverage.name}")
-
-            print("Select Espresso shot(1-5): ")
-            espresso = input.nextInt()
-
-            print("Select Milk(1-5): ")
-            milk = input.nextInt()
-            chocolate = 0
-            foam = 0
-
-            when(viewModel.beverage.coffeeType){
-                CoffeeType.MOCHA ->{
-                    print("Select Chocolate(1-5): ")
-                    chocolate = input.nextInt()
-                }
-
-                CoffeeType.CAPPUCCINO, CoffeeType.LATTE ->{
-                    print("Select Foam(1-5): ")
-                    foam = input.nextInt()
-                }
-
-                else -> {}
-            }
-        }
-        else -> {}
-    }
+    populateUiByBeverageType(viewModel)
     viewModel.prepareBeverage(viewModel.beverage, espresso, foam, milk, chocolate)
     println()
     observe(viewModel)
     observe(viewModel)
+    println()
+    println("Showing latest advertisement...")
 }
 
 private fun observe(viewModel: BeverageViewModel){
@@ -96,4 +73,36 @@ private fun observe(viewModel: BeverageViewModel){
         }
         is BeverageMachineUiState.BeverageOrderSendSuccess -> println("Enjoy your drink!!")
     }
+}
+
+private fun populateUiByBeverageType(viewModel: BeverageViewModel){
+    when(viewModel.beverage.type){
+        BeverageType.COFFEE ->{
+            println("Please select your options on your ${viewModel.beverage.name}")
+
+            print("Select Espresso shot(1-5): ")
+            espresso = input.nextInt()
+
+            print("Select Milk(1-5): ")
+            milk = input.nextInt()
+            chocolate = 0
+            foam = 0
+
+            when(viewModel.beverage.coffeeType){
+                CoffeeType.MOCHA ->{
+                    print("Select Chocolate(1-5): ")
+                    chocolate = input.nextInt()
+                }
+
+                CoffeeType.CAPPUCCINO, CoffeeType.LATTE ->{
+                    print("Select Foam(1-5): ")
+                    foam = input.nextInt()
+                }
+
+                else -> {}
+            }
+        }
+        else -> {}
+    }
+
 }
