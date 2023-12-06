@@ -40,7 +40,13 @@ private fun observe(viewModel: BeverageViewModel){
             println()
             print("Please select your beverage: ")
             val index = input.nextInt()
-            viewModel.beverage = state.listOrBeverage[index-1]
+
+            if(index <=0 || index > state.listOrBeverage.size){
+                println("Invalid request!")
+                exitProcess(0)
+            }else{
+                viewModel.beverage = state.listOrBeverage[index-1]
+            }
         }
         is BeverageMachineUiState.BeverageOrderCreateSuccess ->{
             viewModel.order = state.order
