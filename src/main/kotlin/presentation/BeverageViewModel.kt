@@ -16,6 +16,10 @@ class BeverageViewModel(private val repository: BeverageRepository,
     private val subject = Subject<BeverageMachineUiState>(BeverageMachineUiState.Init)
     val observer: MachineStateObserver<BeverageMachineUiState> = MachineStateObserver(subject)
 
+    init {
+        getAllBeverage()
+    }
+
     fun makePayment(paymentPin : String, amount : Double){
         when(paymentRepository.makePayment(paymentPin, amount)){
             is BaseResult.Success -> subject.state = BeverageMachineUiState.PaymentSuccess
@@ -23,7 +27,7 @@ class BeverageViewModel(private val repository: BeverageRepository,
         }
     }
 
-    fun getAllBeverage() {
+    private fun getAllBeverage() {
         when (val response = repository.getAllBeverage()) {
             is BaseResult.Success -> subject.state = BeverageMachineUiState.BeverageListSuccess(response.order)
             is BaseResult.Error -> subject.state = BeverageMachineUiState.Error(response.msg)

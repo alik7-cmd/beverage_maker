@@ -17,9 +17,7 @@ fun main() {
     val viewModel = BeverageViewModel(
         ServiceLocator.getBeverageRepository(),
         ServiceLocator.getPaymentService())
-    viewModel.getAllBeverage()
     observe(viewModel)
-
     when(viewModel.beverage.type){
         BeverageType.COFFEE ->{
             println("Please select your options on your ${viewModel.beverage.name}")
@@ -48,10 +46,6 @@ fun main() {
         }
         else -> {}
     }
-
-    /*println("Enter payment pin: ")
-    val paymentPin = input.nextInt().toString()
-    viewModel.makePayment(paymentPin, beverage.price)*/
     viewModel.prepareBeverage(viewModel.beverage, espresso, foam, milk, chocolate)
     println()
     observe(viewModel)
@@ -61,11 +55,10 @@ fun main() {
 private fun observe(viewModel: BeverageViewModel){
     when(val state = viewModel.observer.subject.state){
         is BeverageMachineUiState.BeverageListSuccess -> {
-            val emoji = "\uD83C\uDF5C"
             println("-------------------")
             state.listOrBeverage.forEachIndexed { index, beverage ->
                 println(index+1)
-                println("Name: ${beverage.name} \nPrice: ${beverage.price} $emoji")
+                print("Name: ${beverage.name} \nPrice: ${beverage.price} ☕      ")
                 println("-------------------")
             }
             println()
@@ -73,29 +66,34 @@ private fun observe(viewModel: BeverageViewModel){
             val index = input.nextInt()
             viewModel.beverage = state.listOrBeverage[index-1]
         }
-
         is BeverageMachineUiState.BeverageOrderCreateSuccess ->{
             viewModel.order = state.order
             println("Enter payment pin: ")
             val paymentPin = input.nextInt().toString()
             viewModel.makePayment(paymentPin, viewModel.order.price)
         }
-
-        is BeverageMachineUiState.Error ->{
-            println(state.msg)
-        }
-        BeverageMachineUiState.Init -> {}
-        BeverageMachineUiState.PaymentFailed -> {
+        is BeverageMachineUiState.Error -> println(state.msg)
+        is BeverageMachineUiState.Init -> println("Display the advertisement here")
+        is BeverageMachineUiState.PaymentFailed -> {
             println("Payment failed")
             exitProcess(0)
         }
-        BeverageMachineUiState.PaymentSuccess -> {
+        is BeverageMachineUiState.PaymentSuccess -> {
             viewModel.sendFinalOrderToMachine()
-            println("You have selected ${viewModel.order.beverage.name}")
+            println("Your ${viewModel.order.beverage.name} is ready! ☕️")
             println(viewModel.order.decorator.toString())
             println("Price -> "+ String.format("%.2f", viewModel.order.price))
-        }
+            println()
+            println("        ( (")
+            println("        ) )")
+            println("     ........")
+            println("     |      |]")
+            println("     |      /")
+            println("      `----'")
+            println()
+            println("Please Enjoy and have a great day!")
 
-        BeverageMachineUiState.BeverageOrderSendSuccess -> println("Enjoy your drink!!")
+        }
+        is BeverageMachineUiState.BeverageOrderSendSuccess -> println("Enjoy your drink!!")
     }
 }
