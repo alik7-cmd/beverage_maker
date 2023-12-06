@@ -34,7 +34,7 @@ private fun observe(viewModel: BeverageViewModel){
             println("-------------------")
             state.listOrBeverage.forEachIndexed { index, beverage ->
                 println(index+1)
-                print("Name: ${beverage.name} \nPrice: ${beverage.price} ☕      ")
+                println("Name: ${beverage.name} \nPrice: ${beverage.price} ☕      ")
                 println("-------------------")
             }
             println()
